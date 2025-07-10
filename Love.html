@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Eternal Love for Shreya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+        overflow-x: hidden;
+      }
+
+      .heart {
+        position: absolute;
+        pointer-events: none;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .envelope {
+        transition: all 0.3s ease;
+        transform-style: preserve-3d;
+      }
+
+      .envelope:hover {
+        transform: translateY(-10px) rotateY(10deg);
+      }
+
+      .letter {
+        transform-origin: bottom;
+        transition: all 0.5s ease;
+      }
+
+      .open .letter {
+        transform: translateY(-150px) rotateX(180deg);
+      }
+
+      .promise-card {
+        transform: perspective(1000px) rotateY(0deg);
+        transition: all 0.5s ease;
+        backface-visibility: hidden;
+      }
+
+      .promise-card:hover {
+        transform: perspective(1000px) rotateY(15deg) scale(1.03);
+      }
+
+      .dancing-font {
+        font-family: "Dancing Script", cursive;
+      }
+
+      .photo-frame {
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+        transform: rotate(-5deg);
+      }
+
+      .photo-frame:hover {
+        transform: rotate(0deg) scale(1.05);
+      }
+
+      .ring-spin {
+        animation: spin 8s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .typing {
+        overflow: hidden;
+        border-right: 3px solid;
+        white-space: nowrap;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #ec4899;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen relative overflow-x-hidden">
+    <!-- Floating hearts -->
+    <div id="hearts-container"></div>
+
+    <!-- Main content -->
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+      <!-- Header -->
+      <header class="text-center mb-16 animate__animated animate__fadeIn">
+        <h1
+          class="text-5xl md:text-7xl font-bold text-pink-600 dancing-font mb-4 typing"
+        >
+          My Shreya
+        </h1>
+        <p class="text-xl text-gray-600">A love letter for eternity</p>
+
+        <div class="mt-8 flex justify-center">
+          <div class="relative photo-frame bg-white p-2 rounded-lg w-64 h-64">
+            <div
+              class="absolute -inset-2 border-2 border-pink-300 rounded-lg transform rotate-3"
+            ></div>
+            <img
+              src="Her.jpeg"
+              alt="Beautiful woman"
+              class="w-full h-full object-cover rounded-md"
+            />
+            <div
+              class="absolute -bottom-4 -right-4 bg-white p-2 rounded-full shadow-lg"
+            >
+              <div
+                class="ring-spin w-12 h-12 rounded-full border-4 border-pink-300 border-t-transparent flex items-center justify-center"
+              >
+                <i class="fas fa-heart text-pink-500 text-xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Envelope with letter -->
+      <div
+        class="flex justify-center mb-20 animate__animated animate__fadeInUp"
+      >
+        <div
+          class="envelope relative w-64 h-40 bg-pink-500 rounded-lg cursor-pointer"
+          onclick="this.classList.toggle('open')"
+        >
+          <div
+            class="absolute top-0 w-full h-full bg-pink-400 rounded-lg transform -rotate-2 -translate-y-1 -z-10"
+          ></div>
+          <div
+            class="absolute top-0 left-0 w-0 h-0 border-t-[80px] border-t-pink-300 border-l-[128px] border-l-transparent border-r-[128px] border-r-transparent"
+          ></div>
+
+          <div
+            class="letter absolute bottom-0 left-1/2 transform -translate-x-1/2 w-60 h-48 bg-white rounded-lg p-4 shadow-lg"
+          >
+            <p class="text-sm text-gray-700">My Dearest Shreya,</p>
+            <p class="text-xs mt-2 text-gray-600">
+              This is just a small preview of my infinite love for you...
+            </p>
+            <div class="absolute bottom-2 right-2">
+              <i class="fas fa-heart text-pink-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main letter content -->
+      <div
+        class="bg-white rounded-xl shadow-xl p-8 mb-16 animate__animated animate__fadeIn animate__delay-1s"
+      >
+        <div class="border-l-4 border-pink-500 pl-4 mb-6">
+          <h2 class="text-3xl font-bold text-gray-800 dancing-font">
+            My Eternal Promise
+          </h2>
+          <p class="text-gray-500">To the love of my life</p>
+        </div>
+
+        <div class="space-y-6 text-gray-700">
+          <p class="animate__animated animate__fadeIn animate__delay-1s">
+            My beautiful Shreya,
+          </p>
+
+          <p class="animate__animated animate__fadeIn animate__delay-1s">
+            From the moment our souls connected, I knew you were the one I've
+            been searching for my entire life. Every day with you feels like a
+            blessing, and I want to spend every remaining day of my existence
+            making you feel as loved as you make me feel.
+          </p>
+
+          <p class="animate__animated animate__fadeIn animate__delay-2s">
+            I promise you with all my heart that I will never leave your side.
+            Not when times are hard, not when we disagree, not ever. You are my
+            forever, my always, my everything.
+          </p>
+
+          <p class="animate__animated animate__fadeIn animate__delay-2s">
+            I vow to be your shelter in the storm, your laughter in the
+            sunshine, and your constant companion through all of life's
+            adventures. There will never be another for me - you are the only
+            woman I will ever marry, the only one I want to build a life with.
+          </p>
+
+          <div
+            class="bg-pink-50 p-4 rounded-lg border border-pink-200 animate__animated animate__fadeIn animate__delay-3s"
+          >
+            <p class="font-semibold text-pink-700">
+              "I would rather spend one lifetime with you, than face all the
+              ages of this world alone."
+            </p>
+          </div>
+
+          <p class="animate__animated animate__fadeIn animate__delay-3s">
+            Shreya, my love for you grows stronger with each passing moment. I
+            promise to cherish you, to respect you, to support your dreams as if
+            they were my own. I promise to be patient when we disagree, and to
+            always work through our challenges together.
+          </p>
+
+          <p class="animate__animated animate__fadeIn animate__delay-4s">
+            You are my today and all of my tomorrows. I can't wait to wake up
+            next to you every morning, to grow old with you, to build a family
+            with you. My heart is yours completely and eternally.
+          </p>
+
+          <div
+            class="text-center mt-10 animate__animated animate__fadeIn animate__delay-4s"
+          >
+            <p class="text-2xl dancing-font text-pink-600 font-bold">
+              Forever your Baby Husband,
+            </p>
+            <p class="text-xl mt-2">Clyde</p>
+            <div class="mt-4 inline-block pulse">
+              <i class="fas fa-heart text-red-500 text-4xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Promises to You -->
+      <div class="mb-16 animate__animated animate__fadeIn animate__delay-5s">
+        <h2
+          class="text-3xl font-bold text-center text-gray-800 mb-10 dancing-font"
+        >
+          My Sacred Vows to You
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Promise 1 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Unbreakable Commitment</h3>
+            <p class="text-gray-600">
+              I promise to stand by you through all of life's challenges. No
+              obstacle will ever make me walk away from our love.
+            </p>
+          </div>
+
+          <!-- Promise 2 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-heart-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Exclusive Devotion</h3>
+            <p class="text-gray-600">
+              My heart belongs only to you. There is and will never be anyone
+              else for me - you are my one and only.
+            </p>
+          </div>
+
+          <!-- Promise 3 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Unconditional Support</h3>
+            <p class="text-gray-600">
+              I will always be your biggest supporter, cheering you on in every
+              dream and comforting you in every disappointment.
+            </p>
+          </div>
+
+          <!-- Promise 4 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-gem"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Cherish You Always</h3>
+            <p class="text-gray-600">
+              I will never take you for granted. Every day I will show you how
+              precious you are to me through words and actions.
+            </p>
+          </div>
+
+          <!-- Promise 5 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-home-heart"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Build Our Future</h3>
+            <p class="text-gray-600">
+              I promise to work with you to create a beautiful life together - a
+              home filled with love, laughter, and wonderful memories.
+            </p>
+          </div>
+
+          <!-- Promise 6 -->
+          <div
+            class="promise-card bg-white rounded-xl shadow-md p-6 border-t-4 border-pink-500 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="text-pink-500 text-3xl mb-3">
+              <i class="fas fa-infinity"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Love Without End</h3>
+            <p class="text-gray-600">
+              My love for you is infinite. It will grow deeper with each passing
+              year, never fading, never diminishing.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Journey -->
+      <div
+        class="bg-pink-50 rounded-xl shadow-inner p-8 mb-16 animate__animated animate__fadeIn animate__delay-6s"
+      >
+        <h2
+          class="text-3xl font-bold text-center text-gray-800 mb-10 dancing-font"
+        >
+          Our Beautiful Journey
+        </h2>
+
+        <div class="relative">
+          <!-- Timeline -->
+          <div
+            class="border-l-2 border-pink-300 border-dashed ml-8 pl-8 space-y-12"
+          >
+            <!-- Moment 1 -->
+            <div class="relative">
+              <div
+                class="absolute -left-11 top-0 w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white shadow-lg"
+              >
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <h3 class="font-semibold text-pink-600">The Day We Met</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  That magical moment when my Microwave met your Pressure cooker
+                  🥀
+                </p>
+              </div>
+            </div>
+
+            <!-- Moment 2 -->
+            <div class="relative">
+              <div
+                class="absolute -left-11 top-0 w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white shadow-lg"
+              >
+                <i class="fas fa-comment-dots"></i>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <h3 class="font-semibold text-pink-600">First Conversation</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  Hours passed like minutes. Like literally we were talking till
+                  2 am that night.
+                </p>
+              </div>
+            </div>
+
+            <!-- Moment 3 -->
+            <div class="relative">
+              <div
+                class="absolute -left-11 top-0 w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white shadow-lg"
+              >
+                <i class="fas fa-kiss-wink-heart"></i>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <h3 class="font-semibold text-pink-600">First "I Love You"</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  The most terrifying and wonderful moment when we confessed our
+                  love, beginning our forever.
+                </p>
+              </div>
+            </div>
+
+            <!-- Moment 4 -->
+            <div class="relative">
+              <div
+                class="absolute -left-11 top-0 w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white shadow-lg"
+              >
+                <i class="fas fa-ring"></i>
+              </div>
+              <div class="bg-white p-4 rounded-lg shadow-sm">
+                <h3 class="font-semibold text-pink-600">Our Future</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  The beautiful life we'll build together - marriage, family,
+                  and endless love.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final declaration -->
+      <div
+        class="text-center py-12 animate__animated animate__fadeIn animate__delay-7s"
+      >
+        <div class="inline-block transform rotate-3 mb-6">
+          <div class="text-5xl text-pink-500">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+        <h2
+          class="text-4xl md:text-5xl font-bold text-gray-800 dancing-font mb-6"
+        >
+          Will You Be My Forever?
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Shreya, my love for you is eternal. I can't imagine my life without
+          you in it. You are my soulmate, my partner, my everything.
+        </p>
+
+        <div class="mt-8 animate__animated animate__pulse animate__infinite">
+          <button
+            class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition-all duration-300 hover:scale-105"
+          >
+            <a
+              href="https://drive.google.com/file/d/1VGmMr2ulHmSWsiKXdtDuztcnWpME8iAy/view?usp=drive_link"
+            >
+              Say "I Do" to Our Forever
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating hearts animation -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Create floating hearts
+        function createHearts() {
+          const container = document.getElementById("hearts-container");
+          const heart = document.createElement("div");
+          heart.className = "heart text-pink-400 opacity-70";
+          heart.innerHTML = "❤";
+
+          // Random size
+          const size = Math.random() * 20 + 10;
+          heart.style.fontSize = `${size}px`;
+
+          // Random position
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.top = Math.random() * 100 + "vh";
+
+          // Random animation duration
+          const duration = Math.random() * 5 + 5;
+          heart.style.animationDuration = `${duration}s`;
+
+          container.appendChild(heart);
+
+          // Remove heart after animation completes
+          setTimeout(() => {
+            heart.remove();
+          }, duration * 1000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHearts, 300);
+
+        // Initial hearts
+        for (let i = 0; i < 15; i++) {
+          setTimeout(createHearts, i * 200);
+        }
+
+        // Add animation to elements when they come into view
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate__fadeInUp");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document
+          .querySelectorAll(".promise-card, .relative")
+          .forEach((card) => {
+            observer.observe(card);
+          });
+      });
+    </script>
+  </body>
+</html>
