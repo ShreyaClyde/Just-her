@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Love, Shreya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0f0c29 0%,
+          #302b63 50%,
+          #24243e 100%
+        );
+        color: white;
+        scroll-behavior: smooth;
+      }
+
+      .fairytale {
+        font-family: "Great Vibes", cursive;
+      }
+
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .timeline-item {
+        transition: all 0.5s ease;
+        transform-style: preserve-3d;
+      }
+
+      .timeline-item:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .envelope {
+        transition: all 0.5s ease;
+        transform-style: preserve-3d;
+        transform-origin: top center;
+      }
+
+      .envelope.open {
+        transform: rotateX(180deg);
+      }
+
+      .letter {
+        transform: rotateX(180deg);
+        backface-visibility: hidden;
+      }
+
+      .vow-card {
+        transition: all 0.6s ease;
+        transform-style: preserve-3d;
+      }
+
+      .vow-card.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .vow-card-front,
+      .vow-card-back {
+        backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .vow-card-back {
+        transform: rotateY(180deg);
+      }
+
+      .photo-frame {
+        box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+        transition: all 0.3s ease;
+      }
+
+      .photo-frame:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(138, 43, 226, 0.8);
+      }
+
+      .star {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float linear infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .firework {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: explode 1s ease-out forwards;
+      }
+
+      @keyframes explode {
+        0% {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--tx), var(--ty));
+          opacity: 0;
+        }
+      }
+
+      .yes-btn {
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+
+      .yes-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+      }
+
+      .yes-btn:active {
+        transform: scale(0.95);
+      }
+
+      .section-title {
+        text-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+      }
+    </style>
+  </head>
+  <body class="relative overflow-x-hidden">
+    <!-- Star particles -->
+    <div
+      id="stars-container"
+      class="fixed inset-0 overflow-hidden pointer-events-none z-0"
+    ></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 bg-gray-900 backdrop-filter backdrop-blur-lg shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-3">
+        <div class="flex justify-between items-center">
+          <a
+            href="#"
+            class="text-2xl font-bold fairytale text-purple-300 hover:text-white transition"
+            >Shreya & You</a
+          >
+          <div class="hidden md:flex space-x-8">
+            <a href="#story" class="text-purple-200 hover:text-white transition"
+              >Our Story</a
+            >
+            <a
+              href="#letter"
+              class="text-purple-200 hover:text-white transition"
+              >Love Letter</a
+            >
+            <a href="#vows" class="text-purple-200 hover:text-white transition"
+              >Vows</a
+            >
+            <a
+              href="#proposal"
+              class="text-purple-200 hover:text-white transition"
+              >Forever</a
+            >
+          </div>
+          <button class="md:hidden text-white focus:outline-none">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+    >
+      <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+      <div class="container mx-auto px-6 z-20 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 fairytale text-white">
+          My <span class="text-purple-300">Dearest</span> Shreya
+        </h1>
+        <p class="text-xl md:text-2xl text-purple-200 mb-10 max-w-3xl mx-auto">
+          Every moment with you feels like a beautiful dream I never want to
+          wake up from...
+        </p>
+        <div class="animate-bounce mt-16">
+          <a
+            href="#story"
+            class="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white font-semibold font-sans transition transform hover:scale-105"
+          >
+            Begin Our Story
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Love Story Timeline -->
+    <section id="story" class="py-20 relative z-10">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center mb-16 fairytale section-title"
+        >
+          Our Love Story
+        </h2>
+
+        <div class="relative">
+          <!-- Timeline line -->
+          <div
+            class="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-purple-500 transform -translate-x-1/2"
+          ></div>
+
+          <!-- Timeline items -->
+          <div class="space-y-16 md:space-y-0">
+            <!-- Item 1 -->
+            <div
+              class="timeline-item relative w-full md:w-1/2 p-4 rounded-lg bg-gray-800 bg-opacity-70 border-l-4 border-purple-400 md:border-l-0 md:border-r-4 md:ml-auto mx-2"
+              data-year="2020"
+            >
+              <div class="flex items-center">
+                <div
+                  class="hidden md:flex absolute rounded-full h-8 w-8 bg-purple-500 border-4 border-purple-300 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-purple-300">
+                      First Conversation
+                    </h3>
+                    <span class="text-sm text-purple-200">June 2020</span>
+                  </div>
+                  <p class="mt-2 text-gray-300">
+                    The moment our eyes met and our hearts skipped a beat.
+                    Little did we know this was the beginning of forever.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="timeline-item relative w-full md:w-1/2 p-4 rounded-lg bg-gray-800 bg-opacity-70 border-l-4 border-purple-400"
+              data-year="2021"
+            >
+              <div class="flex items-center">
+                <div
+                  class="hidden md:flex absolute rounded-full h-8 w-8 bg-purple-500 border-4 border-purple-300 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-purple-300">
+                      First "I Love You"
+                    </h3>
+                    <span class="text-sm text-purple-200">February 2021</span>
+                  </div>
+                  <p class="mt-2 text-gray-300">
+                    Under the stars, with trembling hands and racing hearts, we
+                    confessed our love for each other.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div
+              class="timeline-item relative w-full md:w-1/2 p-4 rounded-lg bg-gray-800 bg-opacity-70 border-l-4 border-purple-400 md:border-l-0 md:border-r-4 md:ml-auto"
+              data-year="2022"
+            >
+              <div class="flex items-center">
+                <div
+                  class="hidden md:flex absolute rounded-full h-8 w-8 bg-purple-500 border-4 border-purple-300 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-purple-300">
+                      First Vacation Together
+                    </h3>
+                    <span class="text-sm text-purple-200">July 2022</span>
+                  </div>
+                  <p class="mt-2 text-gray-300">
+                    Exploring new places hand in hand, creating memories that
+                    would last a lifetime.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div
+              class="timeline-item relative w-full md:w-1/2 p-4 rounded-lg bg-gray-800 bg-opacity-70 border-l-4 border-purple-400"
+              data-year="2023"
+            >
+              <div class="flex items-center">
+                <div
+                  class="hidden md:flex absolute rounded-full h-8 w-8 bg-purple-500 border-4 border-purple-300 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-purple-300">
+                      Moving In Together
+                    </h3>
+                    <span class="text-sm text-purple-200">January 2023</span>
+                  </div>
+                  <p class="mt-2 text-gray-300">
+                    Building our nest, learning each other's rhythms, and
+                    falling more in love every day.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5 (Future) -->
+            <div
+              class="timeline-item relative w-full md:w-1/2 p-4 rounded-lg bg-gray-800 bg-opacity-70 border-l-4 border-purple-400 md:border-l-0 md:border-r-4 md:ml-auto"
+              data-year="2024"
+            >
+              <div class="flex items-center">
+                <div
+                  class="hidden md:flex absolute rounded-full h-8 w-8 bg-purple-500 border-4 border-purple-300 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ></div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-purple-300">
+                      Our Wedding
+                    </h3>
+                    <span class="text-sm text-purple-200">Coming Soon</span>
+                  </div>
+                  <p class="mt-2 text-gray-300">
+                    The day we become one, surrounded by love, promising forever
+                    to each other.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Love Letter -->
+    <section id="letter" class="py-20 bg-gray-900 bg-opacity-50 relative">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center mb-16 fairytale section-title"
+        >
+          A Letter For You
+        </h2>
+
+        <div class="flex justify-center">
+          <div
+            class="envelope w-48 h-3 md:w-64 md:h-40 bg-purple-800 rounded-lg relative cursor-pointer shadow-xl"
+            id="envelope"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-purple-700 rounded-lg transform -rotate-6 origin-top-left"
+            ></div>
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-purple-600 rounded-lg transform rotate-6 origin-top-right"
+            ></div>
+            <div
+              class="absolute top-0 left-0 w-full h-20 bg-purple-500 rounded-t-lg"
+            ></div>
+            <div
+              class="absolute top-0 left-0 w-full h-20 bg-purple-400 rounded-t-lg transform origin-top rotate-180 envelope-flap"
+            ></div>
+
+            <div
+              class="letter absolute top-4 left-4 right-4 bottom-4 bg-white text-gray-800 p-4 rounded shadow-lg overflow-y-auto"
+              style="display: none"
+            >
+              <h3 class="text-xl font-bold text-purple-800 mb-2 fairytale">
+                My Dearest Shreya,
+              </h3>
+              <p class="mb-2">
+                From the moment I met you, I knew there was something special
+                about you. Your smile brightens my darkest days, your laughter
+                is my favorite melody, and your love is the greatest gift I've
+                ever received.
+              </p>
+              <p class="mb-2">
+                Every day with you is an adventure. Whether we're exploring new
+                places or simply cuddled up at home, I'm happiest when I'm with
+                you. You've shown me what true love means - patient, kind, and
+                unconditional.
+              </p>
+              <p class="mb-2">
+                I promise to stand by your side through all of life's ups and
+                downs, to be your partner in every sense of the word, and to
+                love you more with each passing day.
+              </p>
+              <p class="mb-2">You are my today and all of my tomorrows.</p>
+              <p class="mt-4 fairytale text-purple-800">Forever Yours,</p>
+              <p class="fairytale text-purple-800">[Your Name]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Love Vows -->
+    <section id="vows" class="py-20 bg-gray-900 bg-opacity-50 relative">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center mb-16 fairytale section-title"
+        >
+          My Promises To You
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Vow 1 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to love you unconditionally, through all of life's
+                challenges and joys.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vow 2 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to support your dreams and be your biggest cheerleader
+                in life.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vow 3 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to protect your heart and cherish our love every
+                single day.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vow 4 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to listen to you with patience and understand you with
+                compassion.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vow 5 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to make you laugh every day and keep our relationship
+                full of joy.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vow 6 -->
+          <div
+            class="vow-card relative h-48 cursor-pointer"
+            onclick="flipCard(this)"
+          >
+            <div
+              class="vow-card-front absolute inset-0 bg-purple-800 bg-opacity-70 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-purple-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+              <h3 class="text-xl font-bold text-white">Click to reveal</h3>
+            </div>
+            <div
+              class="vow-card-back absolute inset-0 bg-purple-900 rounded-lg p-6 flex items-center justify-center shadow-lg"
+            >
+              <p class="text-white text-center">
+                I promise to be faithful and true, building a foundation of
+                trust that lasts forever.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proposal Section -->
+    <section
+      id="proposal"
+      class="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
+    >
+      <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+      <div class="container mx-auto px-6 z-20 text-center">
+        <h2 class="text-5xl md:text-7xl font-bold mb-6 fairytale text-white">
+          Shreya, Will You Marry Me?
+        </h2>
+        <p class="text-xl md:text-2xl text-purple-200 mb-10 max-w-3xl mx-auto">
+          I can't imagine my life without you. Let's make our love story last
+          forever.
+        </p>
+
+        <div class="mt-12">
+          <button
+            id="yes-btn"
+            class="yes-btn px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-white text-2xl font-bold font-sans"
+          >
+            YES, I WILL!
+          </button>
+        </div>
+      </div>
+
+      <!-- Fireworks container -->
+      <div
+        id="fireworks-container"
+        class="fixed inset-0 overflow-hidden pointer-events-none z-30"
+      ></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-90 py-10 relative z-40">
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-purple-300 mb-4 fairytale text-xl">
+          Made with all the love in my heart
+        </p>
+        <p class="text-gray-400">
+          For my beautiful Shreya - today, tomorrow, and forever
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Create star particles
+      function createStars() {
+        const container = document.getElementById("stars-container");
+        const starCount = window.innerWidth < 768 ? 50 : 100;
+
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          // Random size between 1px and 3px
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          // Random position
+          star.style.left = `${Math.random() * 100}vw`;
+          star.style.top = `${Math.random() * 100}vh`;
+
+          // Random opacity
+          star.style.opacity = Math.random() * 0.8 + 0.2;
+
+          // Random animation duration
+          const duration = Math.random() * 10 + 10;
+          star.style.animationDuration = `${duration}s`;
+
+          container.appendChild(star);
+        }
+      }
+
+      // Envelope interaction
+      function setupEnvelope() {
+        const envelope = document.getElementById("envelope");
+        const letter = document.querySelector(".letter");
+
+        envelope.addEventListener("click", function () {
+          envelope.classList.toggle("open");
+
+          if (envelope.classList.contains("open")) {
+            setTimeout(() => {
+              letter.style.display = "block";
+            }, 250);
+          } else {
+            letter.style.display = "none";
+          }
+        });
+      }
+
+      // Flip vow cards
+      function flipCard(card) {
+        card.classList.toggle("flipped");
+      }
+
+      // Proposal button with fireworks
+      function setupProposalButton() {
+        const btn = document.getElementById("yes-btn");
+        const container = document.getElementById("fireworks-container");
+
+        btn.addEventListener("click", function () {
+          // Create fireworks
+          for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+              createFirework(container);
+            }, i * 100);
+          }
+
+          // Change button text
+          btn.textContent = "I CAN'T WAIT TO MARRY YOU!";
+          btn.classList.add(
+            "bg-gradient-to-r",
+            "from-pink-500",
+            "to-purple-600"
+          );
+        });
+      }
+
+      // Create a single firework
+      function createFirework(container) {
+        // Random position
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight * 0.8;
+
+        // Create firework center
+        const center = document.createElement("div");
+        center.classList.add("firework");
+        center.style.left = `${x}px`;
+        center.style.top = `${y}px`;
+        center.style.backgroundColor = getRandomColor();
+        container.appendChild(center);
+
+        // Create particles
+        for (let i = 0; i < 20; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("firework");
+          particle.style.left = `${x}px`;
+          particle.style.top = `${y}px`;
+          particle.style.backgroundColor = getRandomColor();
+
+          // Random direction and distance
+          const angle = Math.random() * Math.PI * 2;
+          const distance = Math.random() * 100 + 50;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+
+          particle.style.setProperty("--tx", `${tx}px`);
+          particle.style.setProperty("--ty", `${ty}px`);
+
+          container.appendChild(particle);
+
+          // Remove after animation
+          setTimeout(() => {
+            particle.remove();
+          }, 1000);
+        }
+
+        // Remove center after animation
+        setTimeout(() => {
+          center.remove();
+        }, 1000);
+      }
+
+      // Get random bright color
+      function getRandomColor() {
+        const colors = [
+          "#ff0000",
+          "#00ff00",
+          "#0000ff",
+          "#ffff00",
+          "#00ffff",
+          "#ff00ff",
+          "#ff9900",
+          "#9900ff",
+          "#00ff99",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      // Initialize everything when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        setupEnvelope();
+        setupProposalButton();
+
+        // Add intersection observer for timeline items
+        const timelineItems = document.querySelectorAll(".timeline-item");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        timelineItems.forEach((item) => {
+          item.style.opacity = 0;
+          item.style.transform = "translateY(20px)";
+          item.style.transition = "all 0.5s ease";
+          observer.observe(item);
+        });
+      });
+    </script>
+  </body>
+</html>
